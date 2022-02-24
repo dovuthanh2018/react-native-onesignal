@@ -34,8 +34,8 @@ const eventList = [
 export default class EventManager {
     private RNOneSignal: NativeModule;
     private oneSignalEventEmitter: NativeEventEmitter;
-    private eventHandlerMap?: Map<string, (event: any) => void>;
-    private eventHandlerArrayMap?: Map<string, Array<(event: any) => void>>;
+    private eventHandlerMap: Map<string, (event: any) => void>;
+    private eventHandlerArrayMap: Map<string, Array<(event: any) => void>>;
     private listeners: { [key: string]: EmitterSubscription };
 
     constructor(RNOneSignal: NativeModule) {
