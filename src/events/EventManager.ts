@@ -33,14 +33,16 @@ const eventList = [
 
 export default class EventManager {
     private RNOneSignal: NativeModule;
-    private oneSignalEventEmitter: NativeEventEmitter;
+    private oneSignalEventEmitter?: NativeEventEmitter;
     private eventHandlerMap: Map<string, (event: any) => void>;
     private eventHandlerArrayMap: Map<string, Array<(event: any) => void>>;
     private listeners: { [key: string]: EmitterSubscription };
 
     constructor(RNOneSignal: NativeModule) {
         this.RNOneSignal = RNOneSignal;
-        this.oneSignalEventEmitter = RNOneSignal ? new NativeEventEmitter(RNOneSignal) : undefined;
+        if(RNOneSignal) {
+            this.oneSignalEventEmitter = new NativeEventEmitter(RNOneSignal);
+        }
         this.eventHandlerMap = new Map();       // used for setters (single replacable callback)
         this.eventHandlerArrayMap = new Map();  // used for adders (multiple callbacks possible)
         this.listeners = {};
