@@ -97,7 +97,7 @@ export default class EventManager {
     }
 
     // returns an event listener with the js to native mapping
-    generateEventListener(eventName: string): EmitterSubscription {
+    generateEventListener(eventName: string): any {
         const addListenerCallback = (payload: Object) => {
             if (isMultipleInstancesPossible(eventName)) {
                 // used for adders
