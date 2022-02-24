@@ -119,7 +119,11 @@ export default class EventManager {
             }
         };
 
-        return this.oneSignalEventEmitter.addListener(eventName, addListenerCallback);
+        try {
+            return this.oneSignalEventEmitter.addListener(eventName, addListenerCallback);
+        }catch (ex){
+            return null;
+        }
     }
 
     getFinalPayload(eventName: string, payload: Object): Object {
